@@ -121,8 +121,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -132,21 +132,27 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #aws settings
 
-AWS_ACCESS_KEY_ID = 'your-access-key-id'
-AWS_SECRET_ACCESS_KEY = 'your-secret-access-key'
+AWS_ACCESS_KEY_ID = 'AKIAQ3JH6SLKSDULBVES'
+AWS_SECRET_ACCESS_KEY = '5INExzGKx+m4GD2Fz+Mwe0a/AkjKTqaoTUyq6bQJ'
 AWS_STORAGE_BUCKET_NAME = 'my-test-112'
-AWS_S3_REGION_NAME = 'your-region-name'
+AWS_S3_REGION_NAME = 'us-east-1'
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
-AWS_LOCATION = 'static'
+# AWS_LOCATION = 'static'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),
+# ]
 
-STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-# Hello
+AWS_LOCATION = 'media'  # Use 'media' instead of 'static' for media files
+
+# Use S3Boto3Storage for media files
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+MEDIA_ROOT = ''
+
