@@ -132,10 +132,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #aws settings
 
-AWS_ACCESS_KEY_ID = 'AKIAQ3JH6SLKSDULBVES'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'my-test-112'
-AWS_S3_REGION_NAME = 'us-east-1'
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
