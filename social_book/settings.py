@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-+j5p@qx-l#tr-1b_x%h%ymaz+5gy=7ggq5jj*-)6$w_)$ot_gd
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -74,10 +74,21 @@ WSGI_APPLICATION = 'social_book.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'your username',
+        'PASSWORD': 'your password',
+        'HOST': 'your host',
+        'PORT': '5432'
     }
 }
 
@@ -116,10 +127,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_URL = 'static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+# STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 # MEDIA_URL = '/media/'
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -132,27 +143,27 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #aws settings
 
-AWS_ACCESS_KEY_ID = 'YOUR ACCESS ID'
-AWS_SECRET_ACCESS_KEY = 'YOUR SECRET KEY'
-AWS_STORAGE_BUCKET_NAME = 'YOUR BUCKET NAME'
-AWS_S3_REGION_NAME = 'YOUR BUCKET REGION'
+AWS_ACCESS_KEY_ID = 'your access key'
+AWS_SECRET_ACCESS_KEY = 'your secret access key'
+AWS_STORAGE_BUCKET_NAME = 'your bucket name'
+AWS_S3_REGION_NAME = 'your bucket region'
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
-# AWS_LOCATION = 'static'
+AWS_LOCATION = 'static'
 
 # STATICFILES_DIRS = [
 #     os.path.join(BASE_DIR, 'static'),
 # ]
 
-# STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-AWS_LOCATION = 'media'  # Use 'media' instead of 'static' for media files
+AWS_MEDIA_LOCATION = 'media'  # Use 'media' instead of 'static' for media files
 
 # Use S3Boto3Storage for media files
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_MEDIA_LOCATION}/'
 MEDIA_ROOT = ''
 
