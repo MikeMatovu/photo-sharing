@@ -9,6 +9,7 @@ A photo-sharing app experiment
 1. Open your terminal or command prompt.
 
 2. Change to the directory where you want to clone the Photo Sharing app. For example:
+```cd djangoprojects```
 
 3. Clone the repository by running the following command:
 
